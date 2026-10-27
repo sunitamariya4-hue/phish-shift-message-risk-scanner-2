@@ -18,8 +18,13 @@ st.write("Scan emails and SMS for phishing tactics, defanged links, and urgency 
 # Load Model Artifacts
 @st.cache_resource
 def load_models():
-    vec = joblib.load("tfidf_vectorizer.pkl")
-    clf = joblib.load("risk_classifier.pkl")
+    import os
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    vec = joblib.load(os.path.join(base_dir, "tfidf_vectorizer.pkl"))
+    clf = joblib.load(os.path.join(base_dir, "risk_classifier.pkl"))
+
     return vec, clf
 
 try:
